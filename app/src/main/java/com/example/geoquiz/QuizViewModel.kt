@@ -1,10 +1,8 @@
 package com.example.geoquiz
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 
-//private const val TAG = "QuizViewModel"
 const val CURRENT_INDEX_KEY = "CURRENT_INDEX_KEY"
 const val CHEATED_COUNTER = "CHEATED_COUNTER"
 
@@ -31,8 +29,6 @@ class QuizViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel(
         get() = questionBank[currentIndex].textResId
 
     var cheatedQuestion: Boolean
-        //        get() = savedStateHandle.get(IS_CHEATER_KEY) ?: false
-        //        set(value) = savedStateHandle.set(IS_CHEATER_KEY, value)
         get() = questionBank[currentIndex].isCheated
         set(value) { questionBank[currentIndex].isCheated = value }
 
@@ -41,7 +37,6 @@ class QuizViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel(
         set(value) = savedStateHandle.set(CHEATED_COUNTER, value)
 
     fun moveToNext() {
-//        Log.d(TAG, "Updating question text", Exception())
         currentIndex = (currentIndex + 1) % questionBank.size
     }
 }
